@@ -16,7 +16,7 @@ public static List<Product> initSampleProductList(){
 	List<Product> productList = new ArrayList<>();
 	productList.add(new Product(1L,"printer z1",156.8,"ink jet"));
 	productList.add(new Product(2L,"usb wire",6.8,"2 meters"));
-	productList.add(new Product(3L,"computer x2",676.5,"i7 laptop 17inch"));
+	productList.add(new Product(3L,"computer x2",976.5,"i7 laptop 17inch"));
 	productList.add(new Product(4L,"webcam",96.83,"usb, with sound"));
 	productList.add(new Product(5L,"computer y6",896.83,"i7 desktop ssd"));
 	return productList;

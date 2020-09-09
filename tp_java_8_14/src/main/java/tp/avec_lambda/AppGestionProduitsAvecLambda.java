@@ -12,7 +12,7 @@ import tp.util.ProductUtil;
 
 public class AppGestionProduitsAvecLambda {
 	
-	public static void testDefaultAndStaticMethodOfInterface() {
+	public static void testStaticMethodOfInterface() {
 		int age=20;
 		IsMapped.printIfTrue(age>=18, "adulte");
 		IsMapped.printEither(age>=18, "majeur" , "mineur");
@@ -44,7 +44,7 @@ public class AppGestionProduitsAvecLambda {
 		//Collections.sort(listProd, ___lambda__qui_va_bien____ );
 		//System.out.println("listProd trié par label="+listProd);
 		
-		testDefaultAndStaticMethodOfInterface();
+		testStaticMethodOfInterface();
 		
 		//List<String> categories = Arrays.asList( "Computer" , "Printer" );
 		//Map<String,List<Product>> mapProducts = ProductUtil.buildMapFromAssociatedValues(categories , listProd,

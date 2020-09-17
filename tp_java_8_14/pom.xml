@@ -11,6 +11,14 @@
      <maven.compiler.target>${java.version}</maven.compiler.target>
      <maven.compiler.source>${java.version}</maven.compiler.source>
   </properties>
+  
+  <dependencies>
+		  <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.10.4</version>
+		</dependency>
+  </dependencies>
 
   
   <build>

@@ -2,6 +2,8 @@ package tp.data;
 
 import java.util.Optional;
 
+import tp.annotations.MyMinimum;
+
 public class Person {
 	private Long id;
 	private String firstName;
@@ -10,6 +12,36 @@ public class Person {
 	private Person bestFriend; //may be null (optional)
 	private String email; //may be null (optional)
 	//...
+	
+
+	@MyMinimum(0)
+	private Integer age;
+	
+	
+	@MyMinimum(25) //25cm
+	private Integer taille;
+
+	
+	public Integer getAge() {
+		return age;
+	}
+
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
+	public Integer getTaille() {
+		return taille;
+	}
+
+
+	public void setTaille(Integer taille) {
+		this.taille = taille;
+	}
+
+
 	
 	public Person() {
 		super();

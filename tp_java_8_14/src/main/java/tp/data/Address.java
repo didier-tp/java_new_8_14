@@ -1,5 +1,10 @@
 package tp.data;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter  @Setter @ToString
 public class Address {
 	private String number;
 	private String street;
@@ -20,7 +25,7 @@ public class Address {
 		this.town = town;
 	}
 
-
+/*
 
 	@Override
 	public String toString() {
@@ -66,5 +71,5 @@ public class Address {
 	public void setTown(String town) {
 		this.town = town;
 	}
-
+*/
 }

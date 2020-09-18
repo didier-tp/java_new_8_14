@@ -3,10 +3,10 @@ package tp.j14;
 public class TestNewSwitchApp {
 
 	public static void main(String[] args) {
-		test_switch_with_lambda();
+		//test_switch_with_lambda();
 
 	}
-
+/*
 	private static void test_switch_with_lambda() {
 		int dayOfWeek = 4;
 		System.out.print("dayOfWeek="+dayOfWeek + " -> ");
@@ -52,5 +52,5 @@ public class TestNewSwitchApp {
 
         System.out.println("value=" + value + "->" +  result );
 	}
-
+*/
 }

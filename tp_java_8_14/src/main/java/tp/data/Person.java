@@ -1,15 +1,19 @@
 package tp.data;
 
-import java.util.Optional;
-
+import tp.annotations.CsvIgnore;
 import tp.annotations.MyMinimum;
 
 public class Person {
 	private Long id;
 	private String firstName;
 	private String lastName;
+	
+	@CsvIgnore
 	private Address address; //may be null (optional)
+	
+	@CsvIgnore
 	private Person bestFriend; //may be null (optional)
+	
 	private String email; //may be null (optional)
 	//...
 	

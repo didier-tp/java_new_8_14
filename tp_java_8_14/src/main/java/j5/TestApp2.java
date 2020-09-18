@@ -9,8 +9,8 @@ public class TestApp2 {
 
 
 	public static void main(String[] args) {
-		//m1();
-		m2();
+		m1();
+		//m2();
 	}
 	public static void m2() {
 		List<Integer> listeInt = new ArrayList<>();

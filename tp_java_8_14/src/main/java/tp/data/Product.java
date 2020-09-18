@@ -1,9 +1,13 @@
 package tp.data;
 
+import tp.annotations.CsvIgnore;
+
 public class Product {
 	private Long id;
 	private String label;
 	private Double price;
+	
+	@CsvIgnore
 	private String features;
 	
 	

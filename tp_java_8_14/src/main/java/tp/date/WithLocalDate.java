@@ -15,9 +15,9 @@ public class WithLocalDate {
 		
 		
 		/* A FAIRE EN Tp:
-		 1. afficher telle quelle une instance de LocalDate correspondant à la date d'aujourd'hui
-		 2. afficher cette même instance au format français jour/mois/année
-		    en utilisant la méthode .format() de la classe LocalDate
+		 1. afficher telle quelle une instance de LocalDate correspondant a la date d'aujourd'hui
+		 2. afficher cette meme instance au format francais jour/mois/annee
+		    en utilisant la methode .format() de la classe LocalDate
 		    et DateTimeFormatter.ofPattern("....",Locale.FRENCH)
 		 3. afficher la Date du premier pas sur la lune 21/07/1969
 		 */
@@ -30,7 +30,7 @@ public class WithLocalDate {
        long nbMsSinceFirstJanuary1970GMT = instantT.toEpochMilli();
        System.out.println("instantT.toEpochMilli() , timestamp , nb ms since 1970-01-01 00:00:00 GMT=" + nbMsSinceFirstJanuary1970GMT);
 		
-		// Manipulations plus élaborées de Dates et Heures (avec nouveautees java 8):
+		// Manipulations plus elaborees de Dates et Heures (avec nouveautees java 8):
 	   LocalTime nowTime = LocalTime.now();	 System.out.println("now is " + nowTime);
 	   /* A FAIRE EN Tp:
 		 - effectuer des manipulations de dates et d'heures :

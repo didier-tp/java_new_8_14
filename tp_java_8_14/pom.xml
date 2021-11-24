@@ -10,7 +10,7 @@
      <!-- version du jdk : 1.6 , 1.7 , 1.8 
          puis 9 , 10 , 11 , ..., 17, ... -->
     <!--  <java.version>11</java.version> -->
-     <java.version>14</java.version> 
+     <java.version>16</java.version> 
      <maven.compiler.release>${java.version}</maven.compiler.release><!-- depuis java 9 --> 
      <!--   
      <maven.compiler.target>${java.version}</maven.compiler.target>

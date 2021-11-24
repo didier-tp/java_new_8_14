@@ -3,10 +3,10 @@ package tp.j14;
 public class TestNewSwitchApp {
 
 	public static void main(String[] args) {
-		//test_switch_with_lambda();
+		test_switch_with_lambda();
 
 	}
-/*
+
 	private static void test_switch_with_lambda() {
 		int dayOfWeek = 4;
 		System.out.print("dayOfWeek="+dayOfWeek + " -> ");
@@ -41,16 +41,16 @@ public class TestNewSwitchApp {
         String result = switch( value ) {
             case 0, 2, 4, 6, 8 -> {
                 double racine = Math.sqrt( value );
-                yield "chiffre pair dont la racine carr� vaut " + racine;
+                yield "chiffre pair dont la racine carree vaut " + racine;
             }
             case 1, 3, 5, 7, 9 -> {
                 double carre = value * value;
-                yield "chiffre impair dont le carr� vaut " + carre;
+                yield "chiffre impair dont le carree vaut " + carre;
             }
             default -> "ce n'est plus un chiffre, mais un nombre";
         };
 
         System.out.println("value=" + value + "->" +  result );
 	}
-*/
+
 }

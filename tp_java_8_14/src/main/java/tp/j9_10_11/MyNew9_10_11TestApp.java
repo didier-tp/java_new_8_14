@@ -67,7 +67,7 @@ public class MyNew9_10_11TestApp {
 			System.out.println("reponse status:" + resp.statusCode()); //200 for ok
 			System.out.println("reponse uri:" + resp.uri().toString()); //http://www.google.com
 			System.out.println("reponse type:" + resp.headers().map().get("Content-Type"));//[text/html; charset=ISO-8859-1]
-			System.out.println("reponse text:" + resp.body());//texte html  habituellement affich� par navigateur
+			System.out.println("reponse text:" + resp.body());//texte html  habituellement affiche par navigateur
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -77,15 +77,16 @@ public class MyNew9_10_11TestApp {
 		//En mode asynchrone , sendAsync retournant un CompletableFuture : 
 		client.sendAsync(req, BodyHandlers.ofString())
 		      .thenAccept(resp -> {
-		    		System.out.println("recuperation r�ponse asynchrone / interpreted by " + Thread.currentThread().getName());
+		    		System.out.println("recuperation reponse asynchrone / interpreted by " + Thread.currentThread().getName());
 		    	    System.out.println("reponse status:" + resp.statusCode()); 
 					System.out.println("reponse uri:" + resp.uri().toString()); 
 					System.out.println("reponse type:" + resp.headers().map().get("Content-Type"));
 					System.out.println("reponse text size:" + resp.body().length());
+					//System.out.println("reponse text :" + resp.body());
 		      		});
         System.out.println("suite synchrone interpreted by " + Thread.currentThread().getName());
 		try {
-			Thread.sleep(2000);//pause ici pour eviter arr�t complet du programme 
+			Thread.sleep(2000);//pause ici pour eviter arret complet du programme 
 			                    // avant la fin des taches de fond asynchrones
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -131,11 +132,11 @@ public class MyNew9_10_11TestApp {
 	}
 
 	public static void main(String[] args) {
-		test_collection_factory_method_of_since_java9();
-		test_steam_improvement_since_java9();
-		test_private_interface_method_since_java9();
-		test_var_since_java10();
-		test_new_http2_client_since_java9_standard_since_java11();
+		//test_collection_factory_method_of_since_java9();
+		//test_steam_improvement_since_java9();
+		//test_private_interface_method_since_java9();
+		//test_var_since_java10();
+		//test_new_http2_client_since_java9_standard_since_java11();
 		test_new_httpClient_withSubscriber();
 
 	}

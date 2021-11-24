@@ -6,7 +6,7 @@
 
 * improved javadoc (with module, search , ...)
 
-* collection factory m"thods (List.of() , Set.of() , ...) / immutable collections
+* collection factory methods (List.of() , Set.of() , ...) / immutable collections
 
 * Stream api improvement (dropWhile, takeWhile, ...)
 

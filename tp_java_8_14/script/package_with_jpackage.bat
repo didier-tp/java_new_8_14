@@ -9,10 +9,12 @@ set PATH=%PATH%;%JAVA_HOME%\bin;%WIX_HOME%
 REM type=msi or exe for windows , deb or rpm for windows , dmg or pkg on mac
 set TYPE=msi
 set NAME=JPackageDemoApp
-set MAIN_CLASS=tp.MainClassForJPackageTestApp
+set MAIN_CLASS=tp.j15_16_17.MainClassForJPackageTestApp
 set INPUT_JAR_DIR=../target
 set MAIN_JAR=tp_java_8_14-0.0.1-SNAPSHOT.jar
-set OPTIONS=--win-console --java-options '--enable-preview'
+REM set OPTIONS=--win-console --java-options '--enable-preview'
+REM set OPTIONS=--java-options '--enable-preview'
+set OPTIONS=
 
 jpackage --input %INPUT_JAR_DIR%  --name %NAME% --main-jar %MAIN_JAR%  --main-class %MAIN_CLASS% --type %TYPE%  %OPTIONS%
 REM fichier construit : JPackageDemoApp.msi

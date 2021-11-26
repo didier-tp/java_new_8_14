@@ -43,10 +43,20 @@
                 <configuration>
                     <release>${java.version}</release>
                     <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <compilerArgs>--enable-preview</compilerArgs><!-- sealed , ... -->  
+                    <target>${java.version}</target>  
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+                        <manifest>
+                            <mainClass>tp.j15_16_17.MainClassForJPackageTestApp</mainClass>                                
+                        </manifest>
+					</archive>
+				</configuration>
+			</plugin>
         </plugins>
     </pluginManagement>
 </build>

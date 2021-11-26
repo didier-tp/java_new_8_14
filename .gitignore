@@ -11,6 +11,7 @@
 **/*.jar
 */*.war
 */*.ear
+**/*.msi
 
 */node_modules
 **/node_modules

@@ -23,7 +23,7 @@ public class AppGestionProduitsAvecLambda {
 		System.out.println("listProd="+listProd);
 		
 		//List<Product> subListCheapProducts = ProductUtil.extractSubListByPredicate(listProd,___lambda__qui_va_bien____);
-		//NB: sur ce premier exemple de lambda , effectuer plusieurs essais avec les différentes
+		//NB: sur ce premier exemple de lambda , effectuer plusieurs essais avec les differentes
 		//variations syntaxiques possibles (avec ou sans () , avec ou sans { } , ...)
 		//System.out.println("subListCheapProducts="+subListCheapProducts);
 		
@@ -42,7 +42,7 @@ public class AppGestionProduitsAvecLambda {
 		//System.out.println("listProd par prix croissant="+listProd);
 		
 		//Collections.sort(listProd, ___lambda__qui_va_bien____ );
-		//System.out.println("listProd trié par label="+listProd);
+		//System.out.println("listProd trie par label="+listProd);
 		
 		testStaticMethodOfInterface();
 		

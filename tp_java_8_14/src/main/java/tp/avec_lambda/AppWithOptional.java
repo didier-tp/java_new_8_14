@@ -58,7 +58,7 @@ public class AppWithOptional {
     	    
     	  Rappels: .get()  quelquefois retourne une execption si pas de test if(....isPresent()) { ...}
     	            et si valeur interne null/empty
-    	           .orElse(___valeurSiNullEmpty_____) ne soul�ve pas d'exception . 
+    	           .orElse(___valeurSiNullEmpty_____) ne souleve pas d'exception . 
     	    
     	 */
 		System.out.println("----------------");

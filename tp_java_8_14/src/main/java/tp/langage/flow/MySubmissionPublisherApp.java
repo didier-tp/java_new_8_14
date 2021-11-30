@@ -15,8 +15,8 @@ public class MySubmissionPublisherApp {
 	}
 
 	public static void main(String[] args) {
-	   //sansProcesseur();
-	   avecProcesseur();
+	   sansProcesseur();
+	  // avecProcesseur();
 	}
 	public static void sansProcesseur() {
         SubmissionPublisher<Object> publisher = new SubmissionPublisher<>();

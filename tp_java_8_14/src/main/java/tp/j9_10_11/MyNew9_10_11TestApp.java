@@ -1,5 +1,6 @@
 package tp.j9_10_11;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -60,7 +61,7 @@ public class MyNew9_10_11TestApp {
 		              .header("User-Agent","Java")
 		              .GET()
 		              .build();
-        /*
+      
         //En mode synchrone :
 		try {
 			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
@@ -72,8 +73,8 @@ public class MyNew9_10_11TestApp {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		} */
-		
+		} 
+		/*
 		//En mode asynchrone , sendAsync retournant un CompletableFuture : 
 		client.sendAsync(req, BodyHandlers.ofString())
 		      .thenAccept(resp -> {
@@ -90,7 +91,7 @@ public class MyNew9_10_11TestApp {
 			                    // avant la fin des taches de fond asynchrones
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println("fin synchrone / interpreted by " + Thread.currentThread().getName());
 		
 	}
@@ -136,8 +137,8 @@ public class MyNew9_10_11TestApp {
 		//test_steam_improvement_since_java9();
 		//test_private_interface_method_since_java9();
 		//test_var_since_java10();
-		//test_new_http2_client_since_java9_standard_since_java11();
-		test_new_httpClient_withSubscriber();
+		test_new_http2_client_since_java9_standard_since_java11();
+		//test_new_httpClient_withSubscriber();
 
 	}
 

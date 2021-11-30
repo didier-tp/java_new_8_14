@@ -10,8 +10,8 @@ public class MyApp {
 		
 		BasicComputer basicComputer = BasicComputer.buildBasicComputer();
 		
-		//BasicGui basicGui = BasicGui.buildBasicGui(GuiType.TXT_GUI);
-		BasicGui basicGui = BasicGui.buildBasicGui(GuiType.DLG_GUI);
+		BasicGui basicGui = BasicGui.buildBasicGui(GuiType.TXT_GUI);
+		//BasicGui basicGui = BasicGui.buildBasicGui(GuiType.DLG_GUI);
 		
 		String sX= basicGui.input("x=");
         Double x  = Double.parseDouble(sX);

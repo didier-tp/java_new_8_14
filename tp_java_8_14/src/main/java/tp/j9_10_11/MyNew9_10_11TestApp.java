@@ -7,9 +7,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import tp.data.Product;
+import tp.util.ProductUtil;
 
 public class MyNew9_10_11TestApp {
 	
@@ -137,9 +142,36 @@ public class MyNew9_10_11TestApp {
 		//test_steam_improvement_since_java9();
 		//test_private_interface_method_since_java9();
 		//test_var_since_java10();
-		test_new_http2_client_since_java9_standard_since_java11();
+		//test_new_http2_client_since_java9_standard_since_java11();
 		//test_new_httpClient_withSubscriber();
+        testUnmodifiableCollection_since_java11();
+	}
 
+	private static void testUnmodifiableCollection_since_java11() {
+		List<Product> listProd = ProductUtil.initSampleProductList();
+		System.out.println("listProd="+listProd);
+		List<Product> immutableListProd = Collections.unmodifiableList(listProd);
+	
+		//add , ... interdit sur immutableListProd !!!!
+		immutableListProd.add(new Product(6L,"produit 6",96.83,"azerty"));
+	
+		
+		List<Product> listeProduitsTriesFiltresEtTransformes =
+				immutableListProd.stream()
+        		 .filter((p)->p.getPrice()>=100)
+                 .sorted((p1,p2)->Double.compare(p1.getPrice(), p2.getPrice()))
+                 //.map((p)-> new Product(p.getId(), p.getLabel().toUpperCase(), p.getPrice() , p.getFeatures()))
+                 .map((p) -> { p.setLabel(p.getLabel().toUpperCase()); return p; })
+                 .collect(Collectors.toList());
+
+        
+        //afficher la nouvelle liste construite.
+        System.out.println("liste triée filtrée et transformée:\n" + listeProduitsTriesFiltresEtTransformes);
+        
+        //Attention: on peut tout de même modifier les objets reférencés par la liste !!!!
+        System.out.println("immutableListProd modifiée ou pas:"+immutableListProd);
+     
+		
 	}
 
 }

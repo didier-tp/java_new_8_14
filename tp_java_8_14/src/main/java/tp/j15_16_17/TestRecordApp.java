@@ -8,9 +8,12 @@ public class TestRecordApp {
 
 	public static void main(String[] args) {
 		testRecord();
+		
 		testUsefulRecordV1();
+		
 		testUsefulRecordV2();
 		testUsefulRecordV3();
+		
 	}
 	
 	public static void testRecord() {
@@ -46,6 +49,13 @@ public class TestRecordApp {
 		
 		CustomerRecord c2 = new CustomerRecord(); //ok only with v2 (with explicit default constructor)
 		System.out.println("c2="+c2.toString());//CustomerRecord[id=0, firstName=null, lastName=null]
+	
+		try {
+			CustomerRecord c3 = new CustomerRecord(1,"jean","");
+			System.out.println("c3 as record ="+c3.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//private or public locally RECORD seems to be a good use case for "record" new concept :
@@ -72,7 +82,7 @@ public class TestRecordApp {
 	
 	//V2 avec compatibilité avec api jackson-databind (souvent utilisé par JEE , Spring, ...)
 	//pratique pour définition de DTO/VO (à la volée)
-	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+	//@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 	public record AddressV2(Integer number,String street,String zipCode,String town) {
 	};
 	

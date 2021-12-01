@@ -4,5 +4,11 @@ module tp.modulemain {
 	requires java.net.http;
 	requires lombok;
 	requires jdk.jfr;
+	
+	exports tp.data;
+	opens tp.data;
+	
+	exports tp.j15_16_17;
+	opens tp.j15_16_17;
 }
 

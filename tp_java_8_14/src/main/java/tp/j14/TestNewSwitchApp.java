@@ -8,21 +8,26 @@ public class TestNewSwitchApp {
 	}
 
 	private static void test_switch_with_lambda() {
+		/*
 		int dayOfWeek = 4;
 		System.out.print("dayOfWeek="+dayOfWeek + " -> ");
 		switch(dayOfWeek) {
 		   case 1 -> System.out.println("monday");
 		   case 2 -> System.out.println("tuesday");
 		   case 3 -> System.out.println("wednesday");
-		   case 4 -> System.out.println("thursday");
+		   case 4 -> { System.out.print("jeudi "); System.out.println("thursday"); }
 		   case 5 -> System.out.println("friday");
 		   case 6 -> System.out.println("saturday");
 		   case 0 , 7 -> System.out.println("sunday");
 		   default -> System.out.println("unknown");
 		}
+		*/
 		//******************************
+		
 		String dayName="vendredi";
 		System.out.print("dayName="+dayName + " -> ");
+		
+	
 		int dayNumber = 
 				switch(dayName) {
 				   case "lundi" , "monday" -> 1;
@@ -35,6 +40,7 @@ public class TestNewSwitchApp {
 				   default -> 0;
 				};
 		System.out.println("dayNumber="+dayNumber);
+    	
 		//******************************
 		int value = (int) (Math.random() * 14);
 
@@ -51,6 +57,7 @@ public class TestNewSwitchApp {
         };
 
         System.out.println("value=" + value + "->" +  result );
+      
 	}
 
 }

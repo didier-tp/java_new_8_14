@@ -43,7 +43,7 @@ public class MyNew9_10_11TestApp {
 		System.out.println("obj.f3()="+obj.f3()); //same private sub method (for defaullt)
 	}
 	
-	public static void test_var_since_java10(){
+	public static List<String> test_var_since_java10(){
 		List<String> ls1 = new ArrayList<String>(); //since java 5
 		List<String> ls2 = new ArrayList<>(); //since java 7 (diamond)
 		var ls3 = new ArrayList<String>(); //type inference since java 10 with new keyword "var"
@@ -55,6 +55,7 @@ public class MyNew9_10_11TestApp {
 		//an old variable may be nammed "var" :
 		int var=12; //possible (but NOT ADVISED) .
 		System.out.println("var="+var);
+		return ls3;
 	}
 	
 	public static void test_new_http2_client_since_java9_standard_since_java11() {
@@ -66,7 +67,7 @@ public class MyNew9_10_11TestApp {
 		              .header("User-Agent","Java")
 		              .GET()
 		              .build();
-      
+      /*
         //En mode synchrone :
 		try {
 			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
@@ -79,7 +80,8 @@ public class MyNew9_10_11TestApp {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} 
-		/*
+		*/
+	
 		//En mode asynchrone , sendAsync retournant un CompletableFuture : 
 		client.sendAsync(req, BodyHandlers.ofString())
 		      .thenAccept(resp -> {
@@ -96,7 +98,7 @@ public class MyNew9_10_11TestApp {
 			                    // avant la fin des taches de fond asynchrones
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}*/
+		}
 		System.out.println("fin synchrone / interpreted by " + Thread.currentThread().getName());
 		
 	}
@@ -116,8 +118,8 @@ public class MyNew9_10_11TestApp {
 
 		// BodyHandlers.fromLineSubscriber(s) for registering a subscriber that will receive response text line by line
 		// the return CompletableFuture contains no body but status and other infos
-		client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
-		//client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
+		//client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
+		client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
 	      .thenApply(HttpResponse::statusCode) //extract statusCode from httpResponse
 	      .thenAccept((status) -> {
 	          if (status != 200) {
@@ -141,7 +143,8 @@ public class MyNew9_10_11TestApp {
 		//test_collection_factory_method_of_since_java9();
 		//test_steam_improvement_since_java9();
 		//test_private_interface_method_since_java9();
-		//test_var_since_java10();
+		var ls = test_var_since_java10();
+		System.out.println("ls="+ls);
 		//test_new_http2_client_since_java9_standard_since_java11();
 		//test_new_httpClient_withSubscriber();
         testUnmodifiableCollection_since_java11();
@@ -153,7 +156,7 @@ public class MyNew9_10_11TestApp {
 		List<Product> immutableListProd = Collections.unmodifiableList(listProd);
 	
 		//add , ... interdit sur immutableListProd !!!!
-		immutableListProd.add(new Product(6L,"produit 6",96.83,"azerty"));
+		//immutableListProd.add(new Product(6L,"produit 6",96.83,"azerty"));
 	
 		
 		List<Product> listeProduitsTriesFiltresEtTransformes =

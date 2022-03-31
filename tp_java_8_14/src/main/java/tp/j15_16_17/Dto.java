@@ -1,7 +1,5 @@
 package tp.j15_16_17;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-
 public class Dto {
 	
 	public record Address(Integer number,String street,String zipCode,String town) {

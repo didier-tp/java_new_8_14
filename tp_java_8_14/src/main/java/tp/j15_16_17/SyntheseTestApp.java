@@ -36,7 +36,7 @@ public class SyntheseTestApp {
 		//PHASE2: via switch/case en tant qu'expression retournant valeur
 		//et pour chaque case :
 		//      fonctionalité de la PHASE1 ET
-		//      via yield , retourner une fonction de transformation adéquate
+		//      via yield , retourner une fonction de transformation adéquate (ex: FigureUtil::figureToCircle)
 		Function<Figure,Object> transformationFunction =
 				switch(fig.getType()) {
 				    //....

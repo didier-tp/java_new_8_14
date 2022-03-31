@@ -1,19 +1,19 @@
 package tp.j15_16_17;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class TestRecordApp {
 
 	public static void main(String[] args) {
-		testRecord();
-		
+		//testRecord();
 		testUsefulRecordV1();
-		
 		testUsefulRecordV2();
 		testUsefulRecordV3();
-		
 	}
 	
 	public static void testRecord() {
@@ -49,13 +49,6 @@ public class TestRecordApp {
 		
 		CustomerRecord c2 = new CustomerRecord(); //ok only with v2 (with explicit default constructor)
 		System.out.println("c2="+c2.toString());//CustomerRecord[id=0, firstName=null, lastName=null]
-	
-		try {
-			CustomerRecord c3 = new CustomerRecord(1,"jean","");
-			System.out.println("c3 as record ="+c3.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	//private or public locally RECORD seems to be a good use case for "record" new concept :
@@ -77,12 +70,21 @@ public class TestRecordApp {
 	public static void testUsefulRecordV1() {
 		AddressV1 a1 = new AddressV1(12,"rueElle","75000" ,"Paris");
 		System.out.println("a1="+a1.toString());
-		System.out.println("a1="+a1.toJsonString());
+		String a1AsJsonString =a1.toJsonString();
+		System.out.println("a1="+a1AsJsonString);
+		//et dans le sens inverse jsonString --> record a2:
+		try {
+			ObjectMapper jacksonObjectMapper = new ObjectMapper();
+			AddressV1 a2 = jacksonObjectMapper.readValue(a1AsJsonString,AddressV1.class);
+			System.out.println("via jackson, a2 (clone de a1)="+a2);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//V2 avec compatibilité avec api jackson-databind (souvent utilisé par JEE , Spring, ...)
 	//pratique pour définition de DTO/VO (à la volée)
-	//@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+	//@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)//plus nécessaire depuis version 2.12
 	public record AddressV2(Integer number,String street,String zipCode,String town) {
 	};
 	
@@ -107,6 +109,9 @@ public class TestRecordApp {
 			ObjectMapper jacksonObjectMapper = new ObjectMapper();
 			String p1JsonString = jacksonObjectMapper.writeValueAsString(p1Dto);
 			System.out.println("via jackson, p1JsonString="+p1JsonString);
+			//-----
+			Dto.Person p1BisDto =jacksonObjectMapper.readValue(p1JsonString,Dto.Person.class);
+			System.out.println("via jackson, p1BisDto=clone de p1Dto="+p1BisDto.toString());
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

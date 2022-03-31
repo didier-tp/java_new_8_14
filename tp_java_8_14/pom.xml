@@ -4,13 +4,13 @@
   <artifactId>tp_java_8_14</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-   <description>Tps sur les nouveautes de java 9 10 et 11 (et aussi 12, 13, 14)</description>
+   <description>Tps sur les nouveautes de java 9 10 et 11 (et aussi 12, ..., 17)</description>
   <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
      <!-- version du jdk : 1.6 , 1.7 , 1.8 
          puis 9 , 10 , 11 , ..., 17, ... -->
     <!--  <java.version>11</java.version> -->
-     <java.version>16</java.version> 
+     <java.version>17</java.version> 
      <maven.compiler.release>${java.version}</maven.compiler.release><!-- depuis java 9 --> 
      <!--   
      <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -43,7 +43,8 @@
                 <configuration>
                     <release>${java.version}</release>
                     <source>${java.version}</source>
-                    <target>${java.version}</target>  
+                    <target>${java.version}</target> 
+                    <compilerArgs>--enable-preview</compilerArgs>    
                 </configuration>
             </plugin>
             <plugin>

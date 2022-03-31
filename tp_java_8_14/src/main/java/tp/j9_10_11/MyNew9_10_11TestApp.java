@@ -1,5 +1,7 @@
 package tp.j9_10_11;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,18 +9,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import tp.data.Product;
-import tp.util.ProductUtil;
 
 public class MyNew9_10_11TestApp {
 	
-	public static void test_steam_improvement_since_java9() {
+	public static void test_stream_improvement_since_java9() {
 		IntStream.iterate(1, i -> i < 5, i -> i + 1)
 		         .forEach(System.out::println);
 	}
@@ -43,7 +41,7 @@ public class MyNew9_10_11TestApp {
 		System.out.println("obj.f3()="+obj.f3()); //same private sub method (for defaullt)
 	}
 	
-	public static List<String> test_var_since_java10(){
+	public static void test_var_since_java10(){
 		List<String> ls1 = new ArrayList<String>(); //since java 5
 		List<String> ls2 = new ArrayList<>(); //since java 7 (diamond)
 		var ls3 = new ArrayList<String>(); //type inference since java 10 with new keyword "var"
@@ -55,7 +53,6 @@ public class MyNew9_10_11TestApp {
 		//an old variable may be nammed "var" :
 		int var=12; //possible (but NOT ADVISED) .
 		System.out.println("var="+var);
-		return ls3;
 	}
 	
 	public static void test_new_http2_client_since_java9_standard_since_java11() {
@@ -67,34 +64,32 @@ public class MyNew9_10_11TestApp {
 		              .header("User-Agent","Java")
 		              .GET()
 		              .build();
-      /*
+        /*
         //En mode synchrone :
 		try {
 			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
 			System.out.println("reponse status:" + resp.statusCode()); //200 for ok
 			System.out.println("reponse uri:" + resp.uri().toString()); //http://www.google.com
 			System.out.println("reponse type:" + resp.headers().map().get("Content-Type"));//[text/html; charset=ISO-8859-1]
-			System.out.println("reponse text:" + resp.body());//texte html  habituellement affiche par navigateur
+			System.out.println("reponse text:" + resp.body());//texte html  habituellement affich� par navigateur
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		} 
-		*/
-	
+		} */
+		
 		//En mode asynchrone , sendAsync retournant un CompletableFuture : 
 		client.sendAsync(req, BodyHandlers.ofString())
 		      .thenAccept(resp -> {
-		    		System.out.println("recuperation reponse asynchrone / interpreted by " + Thread.currentThread().getName());
+		    		System.out.println("recuperation r�ponse asynchrone / interpreted by " + Thread.currentThread().getName());
 		    	    System.out.println("reponse status:" + resp.statusCode()); 
 					System.out.println("reponse uri:" + resp.uri().toString()); 
 					System.out.println("reponse type:" + resp.headers().map().get("Content-Type"));
 					System.out.println("reponse text size:" + resp.body().length());
-					//System.out.println("reponse text :" + resp.body());
 		      		});
         System.out.println("suite synchrone interpreted by " + Thread.currentThread().getName());
 		try {
-			Thread.sleep(2000);//pause ici pour eviter arret complet du programme 
+			Thread.sleep(2000);//pause ici pour eviter arr�t complet du programme 
 			                    // avant la fin des taches de fond asynchrones
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -118,8 +113,8 @@ public class MyNew9_10_11TestApp {
 
 		// BodyHandlers.fromLineSubscriber(s) for registering a subscriber that will receive response text line by line
 		// the return CompletableFuture contains no body but status and other infos
-		//client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
-		client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
+		client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
+		//client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
 	      .thenApply(HttpResponse::statusCode) //extract statusCode from httpResponse
 	      .thenAccept((status) -> {
 	          if (status != 200) {
@@ -138,43 +133,115 @@ public class MyNew9_10_11TestApp {
 		System.out.println("fin synchrone / interpreted by " + Thread.currentThread().getName());
 		
 	}
+   
+   public static void oldTryCatchFinallyStyle(){
+	   Scanner scanner = null;
+	   try {
+	       scanner = new Scanner(new File("files/test.txt"));
+	       while (scanner.hasNext()) {
+	           System.out.println(scanner.nextLine());
+	       }
+	   } catch (FileNotFoundException e) {
+	       e.printStackTrace();
+	   } finally {
+	       if (scanner != null) {
+	           scanner.close();
+	       }
+	   }
+   }
+   
+   public static void tryWithResourceStyleSinceJava7(){
+	   try (Scanner scanner = new Scanner(new File("files/test.txt"))) {
+		    while (scanner.hasNext()) {
+		        System.out.println(scanner.nextLine());
+		    }
+		} catch (FileNotFoundException fnfe) {
+		    fnfe.printStackTrace();
+		}
+	   //Automatic close (even without finally) because of 
+	   //Scanner implementing java.lang.AutoCloseable
+	   
+	   //- possible d'implémenter soit meme AutoCloseable.close() sur nouvelle classe
+	   //- try(res1=...;res2=...) est possible (avec ressources multiples)
+   }
+   
+   public static void tryWithResourceStyleSinceJava9() throws IOException{
+	   final Scanner scanner = new Scanner(new File("files/test.txt"));
+	   //scanner can now be declared as final before try(...){ } since java9
+	   try (scanner) {
+		    while (scanner.hasNext()) {
+		        System.out.println(scanner.nextLine());
+		    }
+		} 
+	   //Automatic close (even without finally) because of 
+	   //Scanner implementing java.lang.AutoCloseable of java7
+   }
+   
+   public static void test_try_with_resources_improvement_since_java9(){
+	   //oldTryCatchFinallyStyle();
+	   //tryWithResourceStyleSinceJava7();
+	   try {
+		tryWithResourceStyleSinceJava9();
+	   } catch (IOException e) {
+		e.printStackTrace();
+	   }
+   }
 
 	public static void main(String[] args) {
+		
 		//test_collection_factory_method_of_since_java9();
-		//test_steam_improvement_since_java9();
+		//test_stream_improvement_since_java9();
 		//test_private_interface_method_since_java9();
-		var ls = test_var_since_java10();
-		System.out.println("ls="+ls);
+		test_var_since_java10();
 		//test_new_http2_client_since_java9_standard_since_java11();
 		//test_new_httpClient_withSubscriber();
-        testUnmodifiableCollection_since_java11();
+		//test_try_with_resources_improvement_since_java9();
+		//testImprovedSafeVarargs();
+	}
+	
+	//bad V1 with warnings (MyNew9_10_11TestApp.java uses unchecked or unsafe operations ,
+	//  Type safety: Potential heap pollution via varargs parameter elements)
+	public static <T> T[] unsafeAsArray(T... elements) {
+	    return elements; // unsafe! don't ever return a parameterized varargs array ,just returning Object[]
+	}
+	
+	
+	//V2 (without warning because of @SafeVarargs on a function with <T> and ...)
+	//NB: @SafeVarargs exists since java 7 
+	//since java 9, @SafeVarargs can be used on private methods
+	@SafeVarargs
+	private static <T> Object[] safeAsArray(T... elements) {		
+	    return elements; // safe as just returning Object[]
+	}
+    
+	public static <T> T[] badArrayOfThree(T elt) {
+	    T[] arrayOf3Elts = unsafeAsArray(elt, elt, elt); // broken! This will be an Object[] no matter what T is
+	    return arrayOf3Elts;
+	}
+	
+	public static <T> Object[] goodArrayOfThree(T elt) {
+	    Object[] arrayOf3Elts = safeAsArray(elt, elt, elt); // explicitly view as Object[] no matter what T is
+	    return arrayOf3Elts;
 	}
 
-	private static void testUnmodifiableCollection_since_java11() {
-		List<Product> listProd = ProductUtil.initSampleProductList();
-		System.out.println("listProd="+listProd);
-		List<Product> immutableListProd = Collections.unmodifiableList(listProd);
-	
-		//add , ... interdit sur immutableListProd !!!!
-		//immutableListProd.add(new Product(6L,"produit 6",96.83,"azerty"));
-	
-		
-		List<Product> listeProduitsTriesFiltresEtTransformes =
-				immutableListProd.stream()
-        		 .filter((p)->p.getPrice()>=100)
-                 .sorted((p1,p2)->Double.compare(p1.getPrice(), p2.getPrice()))
-                 //.map((p)-> new Product(p.getId(), p.getLabel().toUpperCase(), p.getPrice() , p.getFeatures()))
-                 .map((p) -> { p.setLabel(p.getLabel().toUpperCase()); return p; })
-                 .collect(Collectors.toList());
-
-        
-        //afficher la nouvelle liste construite.
-        System.out.println("liste triée filtrée et transformée:\n" + listeProduitsTriesFiltresEtTransformes);
-        
-        //Attention: on peut tout de même modifier les objets reférencés par la liste !!!!
-        System.out.println("immutableListProd modifiée ou pas:"+immutableListProd);
-     
-		
+	public static void threeBadAndGoodXxx() {
+	  
+	   try {
+		String[] threeXxxAsStringArray = badArrayOfThree("xxx"); //cast exception
+		   System.out.println("threeXxxAsStringArray:"+threeXxxAsStringArray);
+	   } catch (Exception e) {
+		    System.err.println(e.getMessage());	//cast exception	
+	   }
+	   
+	   Object[] threeXxxAsObjectArray = goodArrayOfThree("xxx"); 
+	   System.out.println("threeXxxAsObjectArray:");
+	   for(Object obj : threeXxxAsObjectArray)
+		   System.out.println("\t"+obj); //ok , affiche 3 fois xxx
 	}
 
+	
+	public static void testImprovedSafeVarargs() {
+		threeBadAndGoodXxx();
+	}
+	
 }

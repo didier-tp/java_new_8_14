@@ -1,6 +1,7 @@
 package tp.j15_16_17;
 
 public class TestPatternMatchingSwitchPreviewApp {
+	/*
 
 	public static void main(String[] args) {
 		System.out.println(getDoubleUsingSwitch("12.5"));
@@ -41,18 +42,18 @@ public class TestPatternMatchingSwitchPreviewApp {
 		        //default -> "ni chat , ni chien";
 		    };
 		    
-		    /*
-		     Remarque importante :
-		     Ce switch/case avec pattern-matching de type 
-		     nécessite absolument une partie "default" si
-		     AnimalDomestique n'est pas scellé (sans le mot clef sealed et ...)
-		     et ne nécessite pas de partie "default" si AnimalDomestique n'est pas scellé
+		  
+		     //Remarque importante :
+		     //Ce switch/case avec pattern-matching de type 
+		     //nécessite absolument une partie "default" si
+		     //AnimalDomestique n'est pas scellé (sans le mot clef sealed et ...)
+		     //et ne nécessite pas de partie "default" si AnimalDomestique n'est pas scellé
 		     --------------
-		     Autrement dit l'intéret principal des classes scéllées tient dans la possibilité
-		     d'utilisiser directement les différents types de classes concrètes 
-		     (dérivant d'un même type abstrait scellé) au sein d'un switch/case sans default
-		     sans avoir besoin de gérer en parallèle une énumération à valeurs possibles fixes/finies.
-		     */
+		     //Autrement dit l'intéret principal des classes scéllées tient dans la possibilité
+		     //d'utilisiser directement les différents types de classes concrètes 
+		     //(dérivant d'un même type abstrait scellé) au sein d'un switch/case sans default
+		     //sans avoir besoin de gérer en parallèle une énumération à valeurs possibles fixes/finies.
+		    
 	}
 	
 	static String getTypeVivantFromRecord(Vivant v) {
@@ -62,6 +63,6 @@ public class TestPatternMatchingSwitchPreviewApp {
 	        //with default if Vivant is not sealed
 	    };
 	}
-
+*/
 
 }

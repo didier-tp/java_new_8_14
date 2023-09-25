@@ -4,7 +4,7 @@ package tp.sam;
 public interface IsMapped<T> {
     boolean isAssociatedWith(String keyValue , T obj );
     
-    default boolean isCaseSensitive() {  	return false;     } //méthode par défaut (rare , quasi bidouille)
+    default boolean isCaseSensitive() {  	return false;     } //mÃ©thode par dÃ©faut (rare , quasi bidouille)
     
     static void printIfTrue(boolean bExpr , String message){
     	if(bExpr) 

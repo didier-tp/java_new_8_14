@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
 public class ProcessApiApp {
 
 	public static void main(String[] args) {
-		//startNodePad();
-		//destroyProcessById();
+		startNodePad();
+		destroyProcessById();
 		//startAndDestroyProcess();
-		startAndWaitingProcess();
+		//startAndWaitingProcess();
 		//displayingProcess();
 	}
 	

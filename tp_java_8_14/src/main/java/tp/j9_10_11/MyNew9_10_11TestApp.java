@@ -113,8 +113,8 @@ public class MyNew9_10_11TestApp {
 
 		// BodyHandlers.fromLineSubscriber(s) for registering a subscriber that will receive response text line by line
 		// the return CompletableFuture contains no body but status and other infos
-		client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
-		//client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
+		//client.sendAsync(req, BodyHandlers.fromLineSubscriber(subscriber1))
+		client.sendAsync(req, BodyHandlers.fromSubscriber(subscriber2))
 	      .thenApply(HttpResponse::statusCode) //extract statusCode from httpResponse
 	      .thenAccept((status) -> {
 	          if (status != 200) {
@@ -192,9 +192,9 @@ public class MyNew9_10_11TestApp {
 		//test_collection_factory_method_of_since_java9();
 		//test_stream_improvement_since_java9();
 		//test_private_interface_method_since_java9();
-		test_var_since_java10();
+		//test_var_since_java10();
 		//test_new_http2_client_since_java9_standard_since_java11();
-		//test_new_httpClient_withSubscriber();
+		test_new_httpClient_withSubscriber();
 		//test_try_with_resources_improvement_since_java9();
 		//testImprovedSafeVarargs();
 	}

@@ -49,7 +49,7 @@ public class AppGestionProduitsSansLambda {
 				return p1.getLabel().compareTo(p2.getLabel());
 				}
 			});
-		System.out.println("listProd trié par label="+listProd);
+		System.out.println("listProd triÃ© par label="+listProd);
 		
 		List<String> categories = Arrays.asList( "Computer" , "Printer" );
 		Map<String,List<Product>> mapProducts = ProductUtil.buildMapFromAssociatedValues(categories , listProd,

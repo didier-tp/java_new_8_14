@@ -20,8 +20,8 @@ public class FromFilePublisherApp {
 	}
 
 	public static void main(String[] args) {
-		//sansProcesseur();
-		avecEtSansProcesseur();
+		sansProcesseur();
+		//avecEtSansProcesseur();
 	}
 	
 	public static void submitLoop(SubmissionPublisher<Object> publisher) {

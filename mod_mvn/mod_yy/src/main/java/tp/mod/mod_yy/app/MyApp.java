@@ -37,7 +37,7 @@ public class MyApp {
 		
 		//nb : tp.module.modyy --> tp.module.modxx --transitive--> tp.module.modzz
 		CxExt.describeModuleOfJavaClass(CxExt.class);
-		CxExt.describeModuleOfJavaClass(java.sql.DriverManager.class);
+		//CxExt.describeModuleOfJavaClass(java.sql.DriverManager.class);
 		
 		/*
 		//pour avec requires mod.auto.s; dans module-info.java et 

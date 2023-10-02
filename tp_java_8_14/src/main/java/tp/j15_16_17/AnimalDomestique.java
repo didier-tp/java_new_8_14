@@ -8,7 +8,7 @@ package tp.j15_16_17;
 
 //sealed keyword can be used if option "enabled preview features for java 16 or java 17"
 //public interface AnimalDomestique  {
-public sealed interface AnimalDomestique permits Chat, Chien {
+public sealed interface AnimalDomestique permits Chat, Chien, Oiseau {
 	public void sayHello();
 	//...
 }

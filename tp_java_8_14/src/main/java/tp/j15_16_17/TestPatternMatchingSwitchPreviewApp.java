@@ -1,8 +1,8 @@
 package tp.j15_16_17;
 
 public class TestPatternMatchingSwitchPreviewApp {
-	/*
-
+	
+/*
 	public static void main(String[] args) {
 		System.out.println(getDoubleUsingSwitch("12.5"));
 		System.out.println(getDoubleUsingSwitch(12.6));
@@ -35,11 +35,13 @@ public class TestPatternMatchingSwitchPreviewApp {
 	
 	//NB: still in "preview mode"  in java 17-LTS !!!
 	//java --enable-preview --source 17 ....
+	//ou bien tester avec le jdk21 en mode normal (sans preview)
 	static String getTypeAnimalDomesticAsString(AnimalDomestique a) {
 		    return switch (a) {
 		        case Chat chat -> "chat";
 		        case Chien chien -> "chien";
-		        //default -> "ni chat , ni chien";
+		        case Oiseau oiseau -> "oiseau";
+		        //default -> "ni chat , ni chien, ni oiseau";
 		    };
 		    
 		  
@@ -48,7 +50,7 @@ public class TestPatternMatchingSwitchPreviewApp {
 		     //nécessite absolument une partie "default" si
 		     //AnimalDomestique n'est pas scellé (sans le mot clef sealed et ...)
 		     //et ne nécessite pas de partie "default" si AnimalDomestique n'est pas scellé
-		     --------------
+		   
 		     //Autrement dit l'intéret principal des classes scéllées tient dans la possibilité
 		     //d'utilisiser directement les différents types de classes concrètes 
 		     //(dérivant d'un même type abstrait scellé) au sein d'un switch/case sans default
@@ -63,6 +65,6 @@ public class TestPatternMatchingSwitchPreviewApp {
 	        //with default if Vivant is not sealed
 	    };
 	}
-*/
 
+ */
 }

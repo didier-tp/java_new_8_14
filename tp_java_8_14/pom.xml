@@ -10,7 +10,7 @@
      <!-- version du jdk : 1.6 , 1.7 , 1.8 
          puis 9 , 10 , 11 , ..., 17, ... -->
     <!--  <java.version>11</java.version> -->
-     <java.version>20</java.version> 
+     <java.version>17</java.version> 
      <maven.compiler.release>${java.version}</maven.compiler.release><!-- depuis java 9 --> 
      <!--   
      <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -75,8 +75,8 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
               <configuration>
-                  <source>20</source>
-                  <target>20</target>
+                  <source>17</source>
+                  <target>17</target>
               </configuration>
           </plugin>
       </plugins>

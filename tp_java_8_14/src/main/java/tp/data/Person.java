@@ -1,5 +1,7 @@
 package tp.data;
 
+import java.util.Optional;
+
 import tp.annotations.CsvIgnore;
 import tp.annotations.MyMinimum;
 
@@ -94,11 +96,11 @@ public class Person {
 	public Address getAddress() {
 		return address;
 	}
-	/*
+	
 	public Optional<Address> getOptionalAddress() {
 		return Optional.ofNullable(address);
 	}
-	*/
+	
 	
 	public void setAddress(Address address) {
 		this.address = address;

@@ -3,11 +3,14 @@ package tp.j9_10_11;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ProxySelector;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -57,7 +60,11 @@ public class MyNew9_10_11TestApp {
 	
 	public static void test_new_http2_client_since_java9_standard_since_java11() {
 		
-		HttpClient client = HttpClient.newHttpClient();
+		//HttpClient client = HttpClient.newHttpClient();
+		HttpClient client = HttpClient.newBuilder()
+				   //.proxy(ProxySelector.of(new InetSocketAddress("100.78.112.201", 8001)))
+				   .connectTimeout(Duration.ofSeconds(10))
+				   .build();
 
 		HttpRequest req =
 		   HttpRequest.newBuilder(URI.create("http://www.google.com"))
@@ -192,9 +199,9 @@ public class MyNew9_10_11TestApp {
 		//test_collection_factory_method_of_since_java9();
 		//test_stream_improvement_since_java9();
 		//test_private_interface_method_since_java9();
-		//test_var_since_java10();
+		test_var_since_java10();
 		//test_new_http2_client_since_java9_standard_since_java11();
-		test_new_httpClient_withSubscriber();
+		//test_new_httpClient_withSubscriber();
 		//test_try_with_resources_improvement_since_java9();
 		//testImprovedSafeVarargs();
 	}

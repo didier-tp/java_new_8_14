@@ -96,11 +96,11 @@ public class Person {
 	public Address getAddress() {
 		return address;
 	}
-	
-	public Optional<Address> getOptionalAddress() {
+	/*
+	public Optional<Address> fetchOptionalAddress() {
 		return Optional.ofNullable(address);
 	}
-	
+	*/
 	
 	public void setAddress(Address address) {
 		this.address = address;
@@ -109,7 +109,7 @@ public class Person {
 		return email;
 	}
 	/*
-	public Optional<String> getOptionalEmail() {
+	public Optional<String> fetchOptionalEmail() {
 		return Optional.ofNullable(email);
 	}*/
 	public void setEmail(String email) {
@@ -122,7 +122,7 @@ public class Person {
 	}
 	
 	/*
-	public Optional<Person> getOptionalBestFriend() {
+	public Optional<Person> fetchOptionalBestFriend() {
 		return Optional.ofNullable(bestFriend);
 	}*/
 

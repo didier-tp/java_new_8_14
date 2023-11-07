@@ -8,16 +8,15 @@ import tp.util.PersonUtil;
 
 //NB: depuis java 8 , le type de retour Optional<T> plutot que T eventuellement null
 //ne fait qu'expliciter clairement (via le type , sans autre commentaire ou documentation supplementaire)
-//l'aspect optionel d'une reference vers un autre objet (multiplicite 0..1 en UML)
+//l'aspect optionel d'une reference vers un objet retourné (proche multiplicite 0..1 en UML)
 
 //au sein de ce Tp , la classe tp.data.Person comportera exceptionnellement
-//public Optional<Address> getOptionalAddress() 
+//public Optional<Address> fetchOptionalAddress() 
 //cohabitant avec public Address getAddress()
 //pour effectuer des comparaisons de styles de code
 
-//dans un veritable projet java >=8 , on aura interet a ne conserver
-//que public Optional<Address> getOptionalAddress() (ou eventuellement public Optional<Address> getAddress())
-//mais ne surtout pas coder public Address getAddress()
+//NB: Optional<T> (au sens OptionalReturn<T>) ne devrait idéalement n'être utilisé 
+//qu'au niveau des valeur de retour (pas au  niveau des attributs/propriétés)!!!!
       
 
 public class AppWithOptional {
@@ -43,7 +42,7 @@ public class AppWithOptional {
     	System.out.println(p);
     	/*
     	 A FAIRE EN TP : 
-    	 1) Ajouter (par suppression de commentaire) les methodes "getOptional....()" 
+    	 1) Ajouter (par suppression de commentaire) les methodes "fetchOptional....()" 
     	    au sein de la classe tp.data.Person :
     	 
     	 

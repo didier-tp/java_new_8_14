@@ -5,21 +5,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
 public class ProcessApiApp {
+	
+	public static void pause(long nbMs) {
+		try {
+			Thread.currentThread().sleep(nbMs);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
-		startNodePad();
-		destroyProcessById();
-		//startAndDestroyProcess();
-		//startAndWaitingProcess();
+		//startNodePad();
 		//displayingProcess();
+		//destroyProcessByAskedId();
+		startAndDestroyProcess();
+		//startAndWaitingProcess();
 	}
 	
 	public static String processHandleAsString(ProcessHandle ph) {
 		return "pid="+ph.pid()+" - "+ph.info().toString();
+				//+ "\n \t children:"  
+				//+ ph.children().map((ProcessHandle dph) -> String.valueOf(dph.pid())).collect(Collectors.joining(" "));
 	}
 	
 	public static void displayingProcess() {
@@ -30,16 +41,33 @@ public class ProcessApiApp {
 		ProcessBuilder builder = new ProcessBuilder("notepad.exe");//de java.lang depuis java 1.5
 		try {
 			Process process = builder.start();
+			System.out.println("process info=" + process.info());
 			System.out.println("pid of process=" + process.pid());
+			process.descendants().forEach(processHandle -> System.out.println("descendant pid="+processHandle.pid()));
+			//NB: the launched process may be a shell starting another subprocess (descendant)
 		} catch (IOException e) {
 				e.printStackTrace();
 		}
 	}
 	
-	public static void destroyProcessById() {
+	public static void destroyProcessByAskedId() {
 		long pid=Long.parseLong(JOptionPane.showInputDialog(null, "pid"));
+		destroyProcessById(pid);
+	}
+	
+	public static void destroyProcessById(long pid) {
 		Optional<ProcessHandle> optionalProcessHandle = ProcessHandle.of(pid);
-		optionalProcessHandle.ifPresent(processHandle -> processHandle.destroy());
+		optionalProcessHandle.ifPresentOrElse(processHandle -> { 
+			                                      processHandle.destroy();
+			                                      if(processHandle.isAlive()) {
+			                                    	  processHandle.destroyForcibly();
+			                                      }
+			                                      if(!processHandle.isAlive()) {
+			                                    	  System.out.println("process of pid="  +pid + "was stopped");
+			                                      }
+			                                   }, 
+		
+				                              ()-> System.out.println("no process with pid="+pid));
 	}
 	
 	public static void startAndDestroyProcess() {
@@ -47,15 +75,18 @@ public class ProcessApiApp {
 		ProcessBuilder builder = new ProcessBuilder("notepad.exe");
 		try {
 			Process process = builder.start();
-			System.out.println("pid of process=" + process.pid());
-			Thread.sleep(5000); //5000ms
-			process.destroy();
-			if (process.isAlive()) {
-				System.out.println("process still alive ...");
-			    process.destroyForcibly(); //a utiliser que si process.destroy() ne suffit pas
-			}else {
-				System.out.println("process is no more alive ...");
-			}
+			System.out.println("info of direct sub process=" + process.info().toString());
+			//pause(50);//50ms
+			//NB: appeler .info() ou bien faire une petite pause permet de voir le sous processus descendant
+			Long descendantPid = process.descendants().findFirst().map(dph -> dph.pid()).orElse(null);
+			System.out.println("pid of direct sub process=" + process.pid());
+			System.out.println("descendantPid=" + descendantPid);
+			pause(3000);//attendre 3s avant arrêter processus
+			if(descendantPid!=null)
+				destroyProcessById(descendantPid);
+			
+			destroyProcessById(process.pid());
+			
 		} catch (Exception e) {
 				e.printStackTrace();
 		}

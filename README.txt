@@ -16,3 +16,22 @@ TP à effectuer : compléter le code de la classe tp.java_new_21plus.loom.virtua
 Le projet j21preview permet d'expérimenter des aspects pas encore stabilisés .
 affaire à suivre en java22,23,...
 
+=======
+exemple de projection JPA directe sur record:
+
+public List<AdvocateNameRecord> 
+	findAdvocateNamesByRegionTypedQuery(String region) {
+
+	TypedQuery<AdvocateNameRecord> query = em.createQuery("""
+			SELECT
+			new com.bk.records.AdvocateNameRecord(a.fName, a.lName)
+			FROM AdvocateEntity a
+			WHERE region = :region
+			""", AdvocateNameRecord.class);
+
+	query.setParameter("region", region);
+
+	return query.getResultList();
+}
+
+

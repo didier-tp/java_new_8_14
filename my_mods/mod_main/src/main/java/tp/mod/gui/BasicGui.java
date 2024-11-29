@@ -1,6 +1,5 @@
 package tp.mod.gui;
 
-
 public interface BasicGui {
 	public void display(String message);
 	public String input(String invite);

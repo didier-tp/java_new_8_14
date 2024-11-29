@@ -3,6 +3,7 @@ package tp.mod.main;
 import tp.mod.compute.BasicComputer;
 import tp.mod.gui.BasicGui;
 import tp.mod.gui.BasicGui.GuiType;
+//import tp.mod.gui.internal.BasicGuiSwing;
 
 public class MyApp {
 
@@ -12,6 +13,8 @@ public class MyApp {
 		
 		BasicGui basicGui = BasicGui.buildBasicGui(GuiType.TXT_GUI);
 		//BasicGui basicGui = BasicGui.buildBasicGui(GuiType.DLG_GUI);
+		
+		//BasicGui basicGui = new BasicGuiSwing();//interdit
 		
 		String sX= basicGui.input("x=");
         Double x  = Double.parseDouble(sX);
